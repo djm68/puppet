@@ -22,7 +22,7 @@ with_master_running_on master, "--allow_duplicate_certs --certdnsnames=\"puppet:
   end
 
   step "Make another request with the same certname"
-  on agents, "puppet certificate generate `hostname -f` --ca-location remote --server #{master}"
+  on agents, puppet("certificate generate `hostname -f` --ca-location remote --server #{master}")
 
   step "Collect the new certs"
 
