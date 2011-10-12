@@ -17,7 +17,7 @@ end
 
 step "Agents: use --parseonly on an invalid manifest, should return 1 and issue deprecation warning"
 agents.each do |host|
-  on(host, "puppet --parseonly /tmp/bad.pp}", :acceptable_exit_codes => [ 1 ]) do
+  on host, puppet("--parseonly /tmp/bad.pp"), :acceptable_exit_codes => [ 1 ] do
     assert_match(/--parseonly has been removed. Please use \'puppet parser validate <manifest>\'/, stdout, "Deprecation warning not issued for --parseonly on #{host}" )
   end
 end
